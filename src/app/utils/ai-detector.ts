@@ -86,7 +86,7 @@ export const realAiDetector = {
         const avgConfidence = concepts.reduce((acc: number, concept: any) => acc + concept.value, 0) / concepts.length;
         
         return {
-          ingredients: [...new Set(ingredients)], // Remove duplicates
+          ingredients: Array.from(new Set(ingredients)),
           confidence: avgConfidence
         };
       } else {
@@ -98,7 +98,7 @@ export const realAiDetector = {
     }
   },
 
-  getFallbackDetection() {
+  getFallbackDetection(): {ingredients: string[], confidence: number} {
     // Smart fallback based on common ingredients
     const commonIngredients = [
       'tomato', 'onion', 'garlic', 'bell pepper', 'carrot', 'broccoli', 
@@ -111,12 +111,8 @@ export const realAiDetector = {
     );
     
     return {
-      ingredients: [...new Set(detectedIngredients)],
+      ingredients: Array.from(new Set(detectedIngredients)),
       confidence: 0.6 + Math.random() * 0.3
     };
-  },
-
-  getFallbackIngredients() {
-    return ['tomato', 'onion', 'garlic', 'olive oil'];
   }
 };

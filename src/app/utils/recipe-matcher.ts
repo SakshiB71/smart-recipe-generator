@@ -9,7 +9,7 @@ const recipes = {
       "instructions": ["Cook pasta", "Sauté garlic", "Add tomatoes", "Mix with pasta", "Garnish with basil"],
       "cookingTime": 20,
       "servings": 2,
-      "difficulty": "Easy",
+      "difficulty": "Easy" as const,
       "rating": 4.5,
       "dietary": ["vegetarian"]
     },
@@ -21,7 +21,7 @@ const recipes = {
       "instructions": ["Chop vegetables", "Stir fry garlic", "Add vegetables", "Add sauce", "Serve hot"],
       "cookingTime": 15,
       "servings": 2,
-      "difficulty": "Easy",
+      "difficulty": "Easy" as const,
       "rating": 4.2,
       "dietary": ["vegetarian", "vegan"]
     },
@@ -33,7 +33,7 @@ const recipes = {
       "instructions": ["Slice tomatoes", "Layer with cheese", "Add basil", "Drizzle oil"],
       "cookingTime": 10,
       "servings": 2,
-      "difficulty": "Easy",
+      "difficulty": "Easy" as const,
       "rating": 4.7,
       "dietary": ["vegetarian", "gluten-free"]
     },
@@ -45,7 +45,7 @@ const recipes = {
       "instructions": ["Mix garlic with butter", "Spread on bread", "Bake until golden", "Add herbs"],
       "cookingTime": 15,
       "servings": 4,
-      "difficulty": "Easy",
+      "difficulty": "Easy" as const,
       "rating": 4.3,
       "dietary": ["vegetarian"]
     },
@@ -57,7 +57,7 @@ const recipes = {
       "instructions": ["Chop fruits", "Mix together", "Add honey", "Serve with yogurt"],
       "cookingTime": 10,
       "servings": 2,
-      "difficulty": "Easy",
+      "difficulty": "Easy" as const,
       "rating": 4.6,
       "dietary": ["vegetarian", "gluten-free"]
     },
@@ -69,7 +69,7 @@ const recipes = {
       "instructions": ["Sauté onions and garlic", "Add tomatoes and broth", "Simmer and blend", "Add cream and herbs"],
       "cookingTime": 25,
       "servings": 4,
-      "difficulty": "Easy",
+      "difficulty": "Easy" as const,
       "rating": 4.4,
       "dietary": ["vegetarian"]
     },
@@ -81,7 +81,7 @@ const recipes = {
       "instructions": ["Slice onions", "Coat in flour", "Dip in eggs", "Bread and fry", "Season and serve"],
       "cookingTime": 20,
       "servings": 4,
-      "difficulty": "Medium",
+      "difficulty": "Medium" as const,
       "rating": 4.1,
       "dietary": ["vegetarian"]
     },
@@ -93,7 +93,7 @@ const recipes = {
       "instructions": ["Cook pasta", "Sauté garlic in butter", "Add shrimp and cook", "Add lemon and parsley", "Mix with pasta"],
       "cookingTime": 15,
       "servings": 2,
-      "difficulty": "Easy",
+      "difficulty": "Easy" as const,
       "rating": 4.8,
       "dietary": []
     },
@@ -105,7 +105,7 @@ const recipes = {
       "instructions": ["Combine all ingredients", "Blend until smooth", "Serve immediately"],
       "cookingTime": 5,
       "servings": 2,
-      "difficulty": "Easy",
+      "difficulty": "Easy" as const,
       "rating": 4.6,
       "dietary": ["vegetarian", "gluten-free"]
     },
@@ -117,7 +117,7 @@ const recipes = {
       "instructions": ["Beat eggs", "Melt butter in pan", "Cook eggs", "Add cheese and fold", "Season and serve"],
       "cookingTime": 10,
       "servings": 1,
-      "difficulty": "Easy",
+      "difficulty": "Easy" as const,
       "rating": 4.3,
       "dietary": ["vegetarian", "gluten-free"]
     }
@@ -178,10 +178,14 @@ export function matchRecipes(
       let finalScore = baseMatchScore + usageBonus - missingPenalty;
       finalScore = Math.max(0, Math.min(100, finalScore)); // Clamp between 0-100
 
-      return { 
-        ...recipe, 
-        matchScore: Math.round(finalScore) 
+      // Create new recipe object with proper typing
+      const scoredRecipe: Recipe = {
+        ...recipe,
+        matchScore: Math.round(finalScore),
+        difficulty: recipe.difficulty
       };
+
+      return scoredRecipe;
     })
     .filter(recipe => {
       // Apply filters
@@ -201,7 +205,7 @@ export function matchRecipes(
       }
       
       // Only show recipes with at least 40% match score
-      return recipe.matchScore >= 40;
+      return recipe.matchScore! >= 40;
     })
     .sort((a, b) => b.matchScore! - a.matchScore!)
     .slice(0, 12); // Limit to top 12 results
@@ -258,13 +262,15 @@ export function getAllRecipes(): Recipe[] {
 // Get unique dietary options from all recipes
 export function getAvailableDietaryOptions(): string[] {
   const allDietary = recipes.recipes.flatMap(recipe => recipe.dietary);
-  return [...new Set(allDietary)].sort();
+  const uniqueDietary = new Set(allDietary);
+  return Array.from(uniqueDietary).sort();
 }
 
 // Get unique difficulties
 export function getAvailableDifficulties(): string[] {
   const difficulties = recipes.recipes.map(recipe => recipe.difficulty);
-  return [...new Set(difficulties)];
+  const uniqueDifficulties = new Set(difficulties);
+  return Array.from(uniqueDifficulties);
 }
 
 // Get cooking time ranges

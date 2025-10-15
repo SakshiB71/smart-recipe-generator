@@ -506,7 +506,7 @@ export default function SmartRecipeGenerator() {
         () => commonIngredients[Math.floor(Math.random() * commonIngredients.length)]
       );
       
-      const uniqueIngredients = [...new Set(detectedIngredients)];
+      const uniqueIngredients = Array.from(new Set(detectedIngredients));
       setIngredients(uniqueIngredients);
       setAiConfidence(0.7 + Math.random() * 0.25);
       setIsLoading(false);
