@@ -1,0 +1,64 @@
+{
+  "recipes": [
+    {
+      "id": 1,
+      "title": "Fresh Tomato Pasta",
+      "image": "https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=400",
+      "ingredients": ["tomato", "pasta", "garlic", "basil", "olive oil", "cheese"],
+      "instructions": ["Cook pasta", "Sauté garlic", "Add tomatoes", "Mix with pasta", "Garnish with basil"],
+      "cookingTime": 20,
+      "servings": 2,
+      "difficulty": "Easy",
+      "rating": 4.5,
+      "dietary": ["vegetarian"]
+    },
+    {
+      "id": 2,
+      "title": "Vegetable Stir Fry",
+      "image": "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=400",
+      "ingredients": ["onion", "garlic", "bell pepper", "carrot", "soy sauce", "ginger"],
+      "instructions": ["Chop vegetables", "Stir fry garlic", "Add vegetables", "Add sauce", "Serve hot"],
+      "cookingTime": 15,
+      "servings": 2,
+      "difficulty": "Easy",
+      "rating": 4.2,
+      "dietary": ["vegetarian", "vegan"]
+    },
+    {
+      "id": 3,
+      "title": "Caprese Salad",
+      "image": "https://images.unsplash.com/photo-1563379091339-03246963d96f?w=400",
+      "ingredients": ["tomato", "cheese", "basil", "olive oil", "balsamic"],
+      "instructions": ["Slice tomatoes", "Layer with cheese", "Add basil", "Drizzle oil"],
+      "cookingTime": 10,
+      "servings": 2,
+      "difficulty": "Easy",
+      "rating": 4.7,
+      "dietary": ["vegetarian", "gluten-free"]
+    },
+    {
+      "id": 4,
+      "title": "Garlic Bread",
+      "image": "https://images.unsplash.com/photo-1573140247632-f2fd2a5d5d20?w=400",
+      "ingredients": ["bread", "garlic", "butter", "herbs", "cheese"],
+      "instructions": ["Mix garlic with butter", "Spread on bread", "Bake until golden", "Add herbs"],
+      "cookingTime": 15,
+      "servings": 4,
+      "difficulty": "Easy",
+      "rating": 4.3,
+      "dietary": ["vegetarian"]
+    },
+    {
+      "id": 5,
+      "title": "Fruit Salad",
+      "image": "https://images.unsplash.com/photo-1564093497595-593b96d80180?w=400",
+      "ingredients": ["apple", "banana", "orange", "berries", "honey", "yogurt"],
+      "instructions": ["Chop fruits", "Mix together", "Add honey", "Serve with yogurt"],
+      "cookingTime": 10,
+      "servings": 2,
+      "difficulty": "Easy",
+      "rating": 4.6,
+      "dietary": ["vegetarian", "gluten-free"]
+    }
+  ]
+}
